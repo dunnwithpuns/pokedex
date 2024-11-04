@@ -2,21 +2,42 @@ package main
 
 import (
 	"fmt"
-	"github.com/dunnwithpuns/pokedex/internal/pokeapi"
 	"log"
 )
 
-func commandMap() error {
-	pokeapiClient := pokeapi.NewClient()
-
-	response, err := pokeapiClient.ListLocationAreas()
+func commandMap(cfg *config) error {
+	response, err := cfg.pokeapiClient.ListLocationAreas(cfg.nextLocationAreaURL)
 	if err != nil {
-		log.Fatal(err)
+		return err
 	}
 
-	for _, location := range response.Results {
-		fmt.Println(location.Name)
+	fmt.Println("Location areas:")
+	for _, area := range response.Results {
+		fmt.Println(area.Name)
 	}
+
+	cfg.nextLocationAreaURL = response.Next
+	cfg.previousLocationAreaURL = response.Previous
+
+	return nil
+}
+
+func commandMapB(cfg *config) error {
+	if cfg.previousLocationAreaURL == nil {
+		return fmt.Errorf("No previous page")
+	}
+
+	response, err := cfg.pokeapiClient.ListLocationAreas(cfg.previousLocationAreaURL)
+	if err != nil {
+		return err
+	}
+
+	for _, area := range response.Results {
+		fmt.Println(area.Name)
+	}
+
+	cfg.nextLocationAreaURL = response.Next
+	cfg.previousLocationAreaURL = response.Previous
 
 	return nil
 }
