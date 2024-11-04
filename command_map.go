@@ -14,5 +14,9 @@ func commandMap() error {
 		log.Fatal(err)
 	}
 
+	for _, location := range response.Results {
+		fmt.Println(location.Name)
+	}
+
 	return nil
 }

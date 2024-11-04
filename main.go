@@ -1,11 +1,7 @@
 package main
 
-import (
-	"fmt"
-	"github.com/dunnwithpuns/pokedex/internal/pokeapi"
-	"log"
-)
+import ()
 
 func main() {
-	// startRepl()
+	startRepl()
 }
