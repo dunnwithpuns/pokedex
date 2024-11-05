@@ -2,6 +2,7 @@ package main
 
 import (
 	"github.com/dunnwithpuns/pokedex/internal/pokeapi"
+	"time"
 )
 
 type config struct {
@@ -13,7 +14,7 @@ type config struct {
 func main() {
 
 	cfg := config{
-		pokeapiClient: pokeapi.NewClient(),
+		pokeapiClient: pokeapi.NewClient(time.Hour),
 	}
 
 	startRepl(&cfg)
