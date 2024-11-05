@@ -35,6 +35,7 @@ func (c *Client) ListLocationAreas(pageURL *string) (LocationAreasResponse, erro
 	if err != nil {
 		return LocationAreasResponse{}, err
 	}
+
 	defer response.Body.Close()
 
 	if response.StatusCode > 399 {
