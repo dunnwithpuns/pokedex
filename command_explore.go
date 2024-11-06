@@ -13,7 +13,7 @@ func commandExplore(cfg *config, commandParameter string) error {
 	fmt.Println("Pokemon in the area:")
 
 	for _, pokemon := range response.PokemonEncounters {
-		fmt.Printf("- %v", pokemon)
+		fmt.Printf("- %v\n", pokemon.Pokemon.Name)
 	}
 
 	return nil

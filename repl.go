@@ -25,12 +25,18 @@ func startRepl(cfg *config) {
 		text := scanner.Text()
 
 		cleaned := cleanInput(text)
+
+		inputParameter := ""
+
 		if len(cleaned) == 0 {
 			continue
 		}
 
+		if len(cleaned) > 1 {
+			inputParameter = cleaned[1]
+		}
+
 		inputCommand := cleaned[0]
-		inputParameter := cleaned[1]
 
 		command, ok := validCommands[inputCommand]
 		if !ok {
@@ -51,6 +57,9 @@ func cleanInput(text string) []string {
 	lowered := strings.ToLower(text)
 	words := strings.Fields(lowered)
 
+	if len(words) > 1 {
+
+	}
 	return words
 }
 
