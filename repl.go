@@ -42,9 +42,6 @@ func startRepl(cfg *config) {
 		if !ok {
 			fmt.Println("Invalid Command")
 			continue
-		} else if command.name != "explore" && inputParameter != "" {
-			fmt.Printf("The %v command does not accept any parameters", command.name)
-			continue
 		}
 
 		if err := command.callback(cfg, inputParameter); err != nil {
@@ -84,6 +81,11 @@ func getCommands() map[string]cliCommand {
 			name:        "explore",
 			description: "List all pokemon in the described area",
 			callback:    commandExplore,
+		},
+		"catch": {
+			name:        "catch",
+			description: "Attempt to catch described pokemon",
+			callback:    commandCatch,
 		},
 		"exit": {
 			name:        "exit",
