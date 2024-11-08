@@ -20,14 +20,15 @@ func commandCatch(cfg *config, name string) error {
 		success = true
 	}
 
-	fmt.Printf("Throwing a Pokeball at %s. . .\n", name)
+	fmt.Printf("- Throwing a Pokeball at %s. . .\n", name)
 	time.Sleep(time.Second)
 
 	if !success {
-		fmt.Printf("%s escaped!\n", name)
+		fmt.Printf("** %s escaped! **\n", name)
 		return nil
 	}
 
-	fmt.Printf("%s was caught!\n", name)
+	fmt.Printf("-- %s was caught! --\n", name)
+	cfg.pokedex[response.Name] = response
 	return nil
 }

@@ -23,15 +23,12 @@ func startRepl(cfg *config) {
 
 		scanner.Scan()
 		text := scanner.Text()
-
 		cleaned := cleanInput(text)
-
 		inputParameter := ""
 
 		if len(cleaned) == 0 {
 			continue
 		}
-
 		if len(cleaned) > 1 {
 			inputParameter = cleaned[1]
 		}
@@ -86,6 +83,11 @@ func getCommands() map[string]cliCommand {
 			name:        "catch",
 			description: "Attempt to catch described pokemon",
 			callback:    commandCatch,
+		},
+		"pokedex": {
+			name:        "pokedex",
+			description: "List all Pokemon in your Pokedex",
+			callback:    commandPokedex,
 		},
 		"exit": {
 			name:        "exit",
