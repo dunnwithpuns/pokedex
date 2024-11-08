@@ -13,14 +13,12 @@ func (c *Client) ExploreArea(area string) (AreaResponse, error) {
 
 	data, ok := c.cache.Get(fullURL)
 	if ok {
-		fmt.Println("cache hit")
 		areaResponse := AreaResponse{}
 		if err := json.Unmarshal(data, &areaResponse); err != nil {
 			return AreaResponse{}, err
 		}
 		return areaResponse, nil
 	}
-	fmt.Println("cache miss")
 
 	request, err := http.NewRequest("GET", fullURL, nil)
 	if err != nil {

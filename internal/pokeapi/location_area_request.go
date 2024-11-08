@@ -17,14 +17,12 @@ func (c *Client) ListLocationAreas(pageURL *string) (LocationAreasResponse, erro
 
 	data, ok := c.cache.Get(fullURL)
 	if ok {
-		fmt.Println("cache hit!")
 		locationAreasResponse := LocationAreasResponse{}
 		if err := json.Unmarshal(data, &locationAreasResponse); err != nil {
 			return LocationAreasResponse{}, err
 		}
 		return locationAreasResponse, nil
 	}
-	fmt.Println("cache miss!")
 
 	request, err := http.NewRequest("GET", fullURL, nil)
 	if err != nil {
